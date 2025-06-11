@@ -277,8 +277,10 @@ class ScreenStack(context: Context?) : ScreenContainer<ScreenStackFragment>(cont
         }
     }
 
-    override fun dispatchDraw(canvas: Canvas) {
-        super.dispatchDraw(canvas)
+    override fun dispatchDraw(canvas: Canvas?) {
+	canvas ?: return
+	val realCanvas = canvas
+	super.dispatchDraw(realCanvas)
 
         // check the view removal is completed (by comparing the previous children count)
         if (drawingOps.size < previousChildrenCount) {
